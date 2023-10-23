@@ -11,14 +11,14 @@ class Main {
         String finalString = "";
         int answerLength = answer.length();
 
-        for (int i = 0; i < original; i++) {
+        for (int i = 0; i < translation.length(); i++) {
             if (i == answerLength) {
                 break;
             } else {
                 if (answer.substring(i, i+1).equals(translation.substring(i, i+1))) {
-                    finalString += ("\u001B[32m" + answer.substring(i, i+1) + "\u001B[32m");
+                    finalString += ("\u001B[32m" + answer.substring(i, i+1) + "\u001B[0m");
                 } else {
-                    finalString += ("\u001B[31m" + answer.substring(i) + "\u001B[31m");
+                    finalString += ("\u001B[31m" + answer.substring(i) + "\u001B[0m");
                     break;
                 }
             }
@@ -33,7 +33,7 @@ class Main {
         System.out.println("Welcome to Language Learner!");
         label: while (true) {
             System.out.println("----------------------------");
-            System.out.println("Please select a language to learn: english, spanish, german, french");
+            System.out.println("Please select a language to learn: spanish, german, french");
 
             Scanner scanner = new Scanner(System.in);
             String languageInput = scanner.nextLine();
@@ -73,7 +73,7 @@ class Main {
 
                 if (randChoice == 1) {
                     // Show the english version first
-                    System.out.println("Please translate the following to ENGLISH: ");
+                    System.out.print("Please translate the following to ENGLISH: ");
                     System.out.println(translatedValue);
 
                     while (true) {
@@ -83,19 +83,20 @@ class Main {
                             break label2;
                         }
 
-                        if (answer.equals(translatedValue)) {
-                            System.out.println("Correct!");
+                        if (answer.equals(englishValue)) {
+                            System.out.print("Correct! ");
+                            System.out.println("\u001B[32m" + answer + "\u001B[0m");
                             break;
                         } else {
-                            System.out.println("Try again!");
-                            System.out.println(getColoredDifferenceString(translatedValue, answer));
+                            System.out.print("Try again! ");
+                            System.out.println(getColoredDifferenceString(englishValue, answer));
                         }
                     }
 
 
                 } else {
                     // Show the translated version first
-                    System.out.println("Please translate the following to " + languageInput.toUpperCase() + ": ");
+                    System.out.print("Please translate the following to " + languageInput.toUpperCase() + ": ");
                     System.out.println(englishValue);
 
                     while (true) {
@@ -106,16 +107,15 @@ class Main {
                         }
 
                         if (answer.equals(translatedValue)) {
-                            System.out.println("Correct!");
+                            System.out.print("Correct! ");
+                            System.out.println("\u001B[32m" + answer + "\u001B[0m");
                             break;
                         } else {
-                            System.out.println("Try again!");
-                            System.out.println(getColoredDifferenceString(englishValue, answer));
+                            System.out.print("Try again! ");
+                            System.out.println(getColoredDifferenceString(translatedValue, answer));
                         }
                     }
                 }
-
-                break;
             }
 
 
