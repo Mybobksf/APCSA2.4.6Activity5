@@ -31,8 +31,8 @@ class Main {
     public static void main(String[] args) {
         System.out.println("----------------------------");
         System.out.println("Welcome to Language Learner!");
+
         label: while (true) {
-            System.out.println("----------------------------");
             System.out.println("Please select a language to learn: spanish, german, french");
 
             Scanner scanner = new Scanner(System.in);
@@ -57,6 +57,7 @@ class Main {
 
             System.out.println("Start practicing " + languageInput + "!");
             System.out.println("Type /quit to stop practicing!");
+            System.out.println("Type /back to go back to the language selection screen!");
 
             Object[] integerToTranslationMaps = translationHashMap.keySet().toArray();
 
@@ -80,10 +81,10 @@ class Main {
                         String answer = scanner.nextLine();
 
                         if (answer.equals("/quit")) {
+                            break label;
+                        } else if (answer.equals("/back")) {
                             break label2;
-                        }
-
-                        if (answer.equals(englishValue)) {
+                        } else if (answer.equals(englishValue)) {
                             System.out.print("Correct! ");
                             System.out.println("\u001B[32m" + answer + "\u001B[0m");
                             break;
@@ -103,10 +104,10 @@ class Main {
                         String answer = scanner.nextLine();
 
                         if (answer.equals("/quit")) {
+                            break label;
+                        } else if (answer.equals("/back")) {
                             break label2;
-                        }
-
-                        if (answer.equals(translatedValue)) {
+                        } else if (answer.equals(translatedValue)) {
                             System.out.print("Correct! ");
                             System.out.println("\u001B[32m" + answer + "\u001B[0m");
                             break;
@@ -117,9 +118,6 @@ class Main {
                     }
                 }
             }
-
-
-            break;
         }
     }
 }
